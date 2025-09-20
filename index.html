@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariage de Charly & Anaïs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #FFD166;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #118AB2;
+            border: 3px solid white;
+            z-index: 10;
+        }
+        .message-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center p-8 mb-12 bg-white rounded-lg shadow-lg" style="background-color: #118AB2; color: white;">
+            <h1 class="text-4xl md:text-6xl font-bold mb-2">Charly & Anaïs</h1>
+            <p class="text-xl text-[#FFD166]">27 Septembre 2025</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#073B4C]">La Rencontre de Deux Mondes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                    <div class="border-2 border-[#118AB2] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4">Charly</h3>
+                        <p class="text-5xl mb-4">🎯 🔧 ⚙️</p>
+                        <p class="text-lg">Un monde de précision, de jouets mécaniques et de bricolage qu'il tient de son grand-père Michel. Un caractère affûté, une force vive.</p>
+                    </div>
+                    <div class="border-2 border-[#FF6B6B] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4">Anaïs</h3>
+                        <p class="text-5xl mb-4">🦄 🎵 🎨</p>
+                        <p class="text-lg">Un univers de licornes, de K-pop et de couleurs, avec une personnalité pleine de fantaisie et de douceur.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">Leur Histoire (très très simplifiée 😉)</h2>
+                <p class="text-center max-w-2xl mx-auto mb-10">Depuis près de 10 ans, ils ont bâti leur histoire, jusqu'à à la construction de leur maison, et l'agrandissement de notre famille.</p>
+                <div class="relative flex flex-col items-center">
+                    <div class="timeline-item w-full relative pb-10">
+                        <div class="md:w-1/2 md:pr-8 md:text-right">
+                            <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-[#118AB2]">Il y a près de 10 ans</p>
+                                <p>La Rencontre</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-item w-full relative pb-10">
+                        <div class="md:w-1/2 md:ml-auto md:pl-8">
+                             <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-[#118AB2]">Une Étape Majeure</p>
+                                <p>La construction de la maison, leur base stratégique</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-item w-full relative pb-10">
+                         <div class="md:w-1/2 md:pr-8 md:text-right">
+                             <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-[#118AB2]">Premier Compagnon</p>
+                                <p>Accueil de Shadow, la chienne espiègle</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                     <div class="timeline-item w-full relative pb-10">
+                        <div class="md:w-1/2 md:ml-auto md:pl-8">
+                            <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-[#118AB2]">La Famille continue de s'agrandir</p>
+                                <p>Arrivée de Viking, le chien plus taciturne</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-item w-full relative">
+                        <div class="md:w-1/2 md:pr-8 md:text-right">
+                            <div class="bg-[#FFD166] p-4 rounded-lg shadow text-[#073B4C]">
+                                <p class="font-bold">Aujourd'hui</p>
+                                <p>Le Mariage !</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot bg-[#FF6B6B]"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                 <h2 class="text-3xl font-bold text-center mb-4 text-[#073B4C]">L'Union du Nord et du Sud</h2>
+                 <p class="text-center max-w-2xl mx-auto mb-8">Anaïs, avec son héritage ibérique, et Charly, avec sa lignée flamande, scellent une union parfaitement unique : la création de leur propre univers familial.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center text-center gap-4">
+                    <div class="p-4 rounded-lg bg-blue-100">
+                        <p class="text-6xl text-[#118AB2]">🇪🇸</p>
+                    </div>
+                    <p class="text-4xl text-[#FF6B6B] font-bold">+</p>
+                    <div class="p-4 rounded-lg bg-yellow-100">
+                         <p class="text-6xl text-[#FFD166]">🇧🇪</p>
+                    </div>
+                    <p class="text-4xl text-green-500 font-bold">=</p>
+                     <div class="p-4 rounded-lg bg-[#06D6A0] text-white">
+                         <p class="text-6xl mb-2">👨‍👩‍👧‍👦 🛡️ 🦄</p>
+                         <p class="text-xl font-bold">Une Nouvelle Famille</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-4 text-[#073B4C]">✨ Laissez un message magique ✨</h2>
+                <p class="text-center max-w-2xl mx-auto mb-6">Aidez l'IA à créer un vœu poétique et unique, digne de l'union d'un Viking et d'une Licorne !</p>
+                <div class="flex flex-col items-center gap-4 w-full max-w-xl mx-auto">
+                    <div class="w-full">
+                        <label for="userName" class="block mb-2 font-bold text-[#073B4C]">Votre prénom (obligatoire)</label>
+                        <input type="text" id="userName" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#118AB2]" placeholder="Entrez votre prénom ici..." required>
+                    </div>
+                    <div class="w-full">
+                        <label for="userRelationship" class="block mb-2 font-bold text-[#073B4C]">Votre lien avec les mariés</label>
+                        <input type="text" id="userRelationship" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#118AB2]" placeholder="Ex: ami, parent, témoin..." required>
+                    </div>
+                    <div class="w-full flex flex-col sm:flex-row gap-4">
+                        <div class="w-full">
+                            <label for="messageAmbience" class="block mb-2 font-bold text-[#073B4C]">Quelle est l'ambiance du message ?</label>
+                            <select id="messageAmbience" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#118AB2]">
+                                <option value="joyeux et festif">Joyeux et festif</option>
+                                <option value="poétique et romantique">Poétique et romantique</option>
+                                <option value="aventureux et épique">Aventureux et épique</option>
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <label for="messageTheme" class="block mb-2 font-bold text-[#073B4C]">Quel élément mettre en avant ?</label>
+                            <select id="messageTheme" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#118AB2]">
+                                <option value="l'univers des vikings">L'univers des Vikings</option>
+                                <option value="le monde des licornes">Le monde des Licornes</option>
+                                <option value="viking et licorne">Viking et Licorne</option>
+                                <option value="leurs deux chiens">Leurs deux chiens</option>
+                            </select>
+                        </div>
+                    </div>
+                    <textarea id="userMessage" rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#118AB2]" placeholder="En quelques mots ou une simple phrase, dites-nous ce que les mariés représentent pour vous et ce que symbolise cette journée." required></textarea>
+                    <button id="generateMessageBtn" class="bg-[#118AB2] text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">✨ Générer le message ✨</button>
+                    <div id="loadingIndicator" class="hidden text-[#118AB2] font-semibold mt-4">Génération en cours...</div>
+                    <div id="generatedMessage" class="w-full p-4 mt-4 bg-gray-50 border-2 border-gray-200 rounded-lg italic text-[#073B4C] text-sm"></div>
+                    <div id="actionButtons" class="hidden w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                        <button id="sendMessageBtn" class="bg-[#06D6A0] text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105">Envoyer au livre d'or</button>
+                        <button id="copyMessageBtn" class="bg-[#FF6B6B] text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105">Copier le message</button>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2">Le message est éphémère. Envoyez-le au livre d'or ou copiez-le !</p>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#073B4C]">Livre d'or</h2>
+                <p class="text-center max-w-2xl mx-auto mb-8">Découvrez les vœux et les messages laissés par les invités.<br>N'hésitez pas à laisser le vôtre !</p>
+                <div id="guestbookMessages" class="space-y-4">
+                    <!-- Messages du livre d'or seront affichés ici -->
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t-2 border-[#118AB2]">
+            <p class="font-bold text-xl text-[#073B4C]">Tous nos vœux de bonheur les plus intenses à Charly et Anaïs !</p>
+        </footer>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-functions.js";
+
+        const generateMessageBtn = document.getElementById('generateMessageBtn');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        const copyMessageBtn = document.getElementById('copyMessageBtn');
+        const userNameInput = document.getElementById('userName');
+        const userRelationshipInput = document.getElementById('userRelationship');
+        const userMessageInput = document.getElementById('userMessage');
+        const messageAmbience = document.getElementById('messageAmbience');
+        const messageTheme = document.getElementById('messageTheme');
+        const generatedMessageDiv = document.getElementById('generatedMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const actionButtons = document.getElementById('actionButtons');
+        const guestbookMessagesDiv = document.getElementById('guestbookMessages');
+        
+        let db;
+        let auth;
+        let authReady = false;
+
+        const initFirebase = async () => {
+            try {
+                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                if (typeof __initial_auth_token !== 'undefined') {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        authReady = true;
+                        setupGuestbookListener();
+                    } else {
+                        console.log("User is not authenticated. Using anonymous sign-in.");
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase initialization error:", error);
+            }
+        };
+
+        const setupGuestbookListener = () => {
+            if (!db) return;
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const guestbookCol = collection(db, `artifacts/${appId}/public/data/guestbook`);
+            const q = query(guestbookCol, orderBy("timestamp", "desc"));
+            
+            onSnapshot(q, (snapshot) => {
+                guestbookMessagesDiv.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const message = doc.data();
+                    const messageCard = document.createElement('div');
+                    messageCard.className = `message-card bg-gray-100 p-4 rounded-lg shadow-sm ${message.isFavorite ? 'border-2 border-[#FF6B6B]' : ''}`;
+                    messageCard.innerHTML = `<p class="font-bold text-[#118AB2] mb-1">${message.name} (${message.relationship}) ${message.isFavorite ? '❤️' : ''}</p><p class="italic text-lg">${message.text}</p>`;
+                    guestbookMessagesDiv.appendChild(messageCard);
+                });
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initFirebase();
+        });
+
+        generateMessageBtn.addEventListener('click', async () => {
+            const userName = userNameInput.value;
+            const userRelationship = userRelationshipInput.value;
+            const userKeywords = userMessageInput.value;
+            const userAmbience = messageAmbience.value;
+            const userTheme = messageTheme.value;
+
+            if (!userName || !userRelationship || !userKeywords) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            generatedMessageDiv.textContent = '';
+            actionButtons.classList.add('hidden');
+            
+            const prompt = `En tant que ${userRelationship}, décris en une phrase ce que Charly et Anaïs représentent pour toi, et ce que symbolise cette journée. Ensuite, crée un vœu de mariage en t'inspirant de leur union et du thème Licorne-Viking. Le message doit être ${userAmbience} et mettre l'accent sur ${userTheme}. Le texte doit faire entre 8 et 10 lignes. N'utilise pas de titre, d'emojis ou de caractères spéciaux.`;
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }]
+            };
+            
+            let response;
+            try {
+                let retries = 0;
+                const maxRetries = 5;
+                const baseDelay = 1000;
+
+                while (retries < maxRetries) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (response.status !== 429) break;
+
+                        retries++;
+                        const delay = baseDelay * Math.pow(2, retries - 1);
+                        await new Promise(res => setTimeout(res, delay));
+                    } catch (error) {
+                        retries++;
+                        const delay = baseDelay * Math.pow(2, retries - 1);
+                        await new Promise(res => setTimeout(res, delay));
+                    }
+                }
+                if (response.status === 429) {
+                    throw new Error('Too many requests, please try again later.');
+                }
+                
+                const result = await response.json();
+                const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (text) {
+                    generatedMessageDiv.textContent = text;
+                    actionButtons.classList.remove('hidden');
+                } else {
+                    generatedMessageDiv.textContent = "Désolé, une erreur s'est produite lors de la génération du message.";
+                }
+            } catch (error) {
+                generatedMessageDiv.textContent = `Erreur: ${error.message}`;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        });
+
+        sendMessageBtn.addEventListener('click', async () => {
+            if (!authReady || !db) {
+                generatedMessageDiv.textContent = "Erreur: Firebase non initialisé. Veuillez réessayer.";
+                return;
+            }
+            
+            const messageText = generatedMessageDiv.textContent;
+            const userName = userNameInput.value;
+            const userRelationship = userRelationshipInput.value;
+            
+            if (!messageText || !userName || !userRelationship) {
+                 generatedMessageDiv.textContent = "Veuillez générer un message et entrer votre prénom et votre lien avant d'envoyer.";
+                return;
+            }
+
+            try {
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                await addDoc(collection(db, `artifacts/${appId}/public/data/guestbook`), {
+                    text: messageText,
+                    name: userName,
+                    relationship: userRelationship,
+                    timestamp: serverTimestamp(),
+                    userId: auth.currentUser.uid
+                });
+                userMessageInput.value = '';
+                userNameInput.value = '';
+                userRelationshipInput.value = '';
+                generatedMessageDiv.textContent = '';
+                actionButtons.classList.add('hidden');
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                generatedMessageDiv.textContent = "Erreur lors de l'envoi du message.";
+            }
+        });
+
+        copyMessageBtn.addEventListener('click', async () => {
+            const messageText = generatedMessageDiv.textContent;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = messageText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        });
+    </script>
+</body>
+</html>
