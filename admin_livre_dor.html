@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration du Livre d'Or</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+        }
+        .message-card {
+            border-left: 5px solid #118AB2;
+        }
+        .favorite {
+            border-left: 5px solid #FFD166;
+            background-color: #FFFBEB;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center p-8 mb-12 bg-[#073B4C] rounded-lg shadow-lg">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Administration du Livre d'Or</h1>
+            <p class="text-lg text-[#FFD166] mt-2">Bienvenue Charly & Anaïs</p>
+        </header>
+
+        <main class="space-y-6">
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#073B4C]">Messages des Invités</h2>
+                <button id="exportBtn" class="bg-[#06D6A0] text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-[#05a379] transition-transform transform hover:scale-105 mb-4">Exporter les messages</button>
+                <div id="adminMessages" class="space-y-4">
+                    <!-- Les messages du livre d'or seront affichés ici -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, updateDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let db;
+        let auth;
+        let authReady = false;
+
+        const adminMessagesDiv = document.getElementById('adminMessages');
+        const exportBtn = document.getElementById('exportBtn');
+
+        const initFirebase = async () => {
+            try {
+                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                if (typeof __initial_auth_token !== 'undefined') {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        authReady = true;
+                        setupAdminListener();
+                    } else {
+                        console.log("User is not authenticated. Using anonymous sign-in.");
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase initialization error:", error);
+            }
+        };
+
+        const setupAdminListener = () => {
+            if (!db) return;
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const guestbookCol = collection(db, `artifacts/${appId}/public/data/guestbook`);
+            const q = query(guestbookCol, orderBy("timestamp", "desc"));
+            
+            onSnapshot(q, (snapshot) => {
+                adminMessagesDiv.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const message = doc.data();
+                    const messageCard = document.createElement('div');
+                    messageCard.className = `message-card p-4 rounded-lg shadow-sm ${message.isFavorite ? 'favorite' : ''}`;
+                    messageCard.innerHTML = `
+                        <p class="font-bold text-[#118AB2] mb-1">${message.name} (${message.relationship}) ${message.isFavorite ? '❤️' : ''}</p>
+                        <p class="italic text-lg mb-2">${message.text}</p>
+                        <div class="flex flex-col sm:flex-row gap-2 mt-2">
+                            <button class="favoriteBtn bg-[#FFD166] text-[#073B4C] font-semibold py-1 px-3 rounded-full text-sm hover:bg-[#FFC647]" data-id="${doc.id}" data-favorite="${message.isFavorite}">
+                                ${message.isFavorite ? 'Retirer des coups de cœur' : 'Marquer comme coup de cœur'}
+                            </button>
+                            <button class="deleteBtn bg-[#FF6B6B] text-white font-semibold py-1 px-3 rounded-full text-sm hover:bg-[#FF4F4F]" data-id="${doc.id}">Supprimer</button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">ID utilisateur: ${message.userId}</p>
+                    `;
+                    adminMessagesDiv.appendChild(messageCard);
+                });
+
+                document.querySelectorAll('.favoriteBtn').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const messageId = e.target.dataset.id;
+                        const isCurrentlyFavorite = e.target.dataset.favorite === 'true';
+                        const messageRef = doc(db, `artifacts/${appId}/public/data/guestbook`, messageId);
+                        await updateDoc(messageRef, {
+                            isFavorite: !isCurrentlyFavorite
+                        });
+                    });
+                });
+
+                document.querySelectorAll('.deleteBtn').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const messageId = e.target.dataset.id;
+                        const messageRef = doc(db, `artifacts/${appId}/public/data/guestbook`, messageId);
+                        await deleteDoc(messageRef);
+                    });
+                });
+            });
+        };
+        
+        exportBtn.addEventListener('click', async () => {
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const guestbookCol = collection(db, `artifacts/${appId}/public/data/guestbook`);
+            const querySnapshot = await getDocs(guestbookCol);
+            
+            const messages = [];
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                messages.push({
+                    id: doc.id,
+                    name: data.name,
+                    relationship: data.relationship,
+                    text: data.text,
+                    timestamp: data.timestamp.toDate().toLocaleString(),
+                    isFavorite: data.isFavorite || false
+                });
+            });
+
+            const dataStr = JSON.stringify(messages, null, 2);
+            const blob = new Blob([dataStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'livre_dor_export.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initFirebase();
+        });
+    </script>
+</body>
+</html>
